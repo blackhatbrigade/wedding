@@ -33,6 +33,7 @@ import {
 } from '@angular/http';
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
+import { GalleryModule } from '../../gallery/client/gallery.module';
 
 @NgModule({
   imports:      [
@@ -46,7 +47,8 @@ import { ActivatedRoute }         from '@angular/router';
     AppRoutingModule,
     RoleModule,
     SimpleNotificationsModule,
-    PushNotificationsModule
+    PushNotificationsModule,
+    GalleryModule
   ],
   providers: [
     UserService,
