@@ -22,8 +22,7 @@ import { GalleryRoutingModule } from './config/gallery-routing.module';
     BrowserModule,
     GalleryRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    NotificationsService
+    ReactiveFormsModule
   ],
   declarations: [
     GalleryComponent,
