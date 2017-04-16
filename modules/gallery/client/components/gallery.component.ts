@@ -1,10 +1,10 @@
 /* Vendor */
-import { Component }                          from '@angular/core';
+import { Component, Inject }                  from '@angular/core';
 import { BrowserModule }                      from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationsService }               from 'angular2-notifications';
-import { FileUploader } from 'ng2-file-upload';
-import { Router }           from '@angular/router';
+import { FileUploader }                       from 'ng2-file-upload';
+import { Router }                             from '@angular/router';
 
 /* Angular2 Models */
 import { Picture } from '../models/picture.model';
@@ -14,8 +14,6 @@ import { GalleryService } from '../services/gallery.service';
 import { AuthService }    from '../../../auth/client/services/auth.service';
 
 /* Module Configuration */
-import { PictureConfig, PICTURE_DI_CONFIG } from '../config/config';
-import { maxSizeValidator }       from '../directives/maxSizeValidator';
 
 @Component({
   templateUrl: './../views/gallery.view.html'

@@ -24,8 +24,6 @@ import {
 import { Observable }   from 'rxjs/Rx';
 import { FileUploader } from 'ng2-file-upload';
 
-import { PictureConfig, PICTURE_DI_CONFIG } from '../config/config';
-
 /*
  * Reactive library.
  */
@@ -44,20 +42,23 @@ export class GalleryService {
   /**
    * Private variable that holds an array of the allowed types.
    */
-  private allowedTypes: Array<string>;
+  private allowedTypes: Array<string> = [
+    'image/png',
+    'image/gif',
+    'image/jpeg'
+  ];
+
+  private uploadURL: string = '/api/gallery';
 
   /**
-   * The max size a image can be to upload.
+   * 20Mb should be big enough (I hope).
    */
-  private maxSize: number;
+  private maxSize: number = 1024 * 1024 * 20;
 
   constructor(
     private http: Http,
-    @Inject(PICTURE_DI_CONFIG) config : PictureConfig
   ) { 
-    this.uploader = new FileUploader({ url: config.uploads.picture.url });
-    this.allowedTypes = config.uploads.picture.allowedTypes;
-    this.maxSize = config.uploads.picture.maxSize;
+    this.uploader = new FileUploader({ url: this.uploadURL });
   }
 
   /**

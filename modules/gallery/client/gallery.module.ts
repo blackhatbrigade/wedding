@@ -11,9 +11,6 @@ import { GalleryService }       from './services/gallery.service';
 /* Components */
 import { GalleryComponent }     from './components/gallery.component';
 
-/* Diirectives */
-import { MaxSizeValidatorDirective } from './directives/maxSizeValidator';
-
 /* Routing Module */
 import { GalleryRoutingModule } from './config/gallery-routing.module';
 
@@ -25,8 +22,7 @@ import { GalleryRoutingModule } from './config/gallery-routing.module';
     ReactiveFormsModule
   ],
   declarations: [
-    GalleryComponent,
-    MaxSizeValidatorDirective
+    GalleryComponent
   ],
   /* You may want to inject this token higher up in the DI tree. For more
    * info:
