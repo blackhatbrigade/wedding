@@ -1,0 +1,15 @@
+.homepage {
+  font-family: 'Dancing Script', cursive;
+}
+
+.page-title {
+  min-width: 700px;
+}
+
+.home-photo {
+  min-width: 533px;
+}
+
+.home-descr {
+  min-width: 700px;
+}

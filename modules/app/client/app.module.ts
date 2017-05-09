@@ -10,6 +10,7 @@ import {
 } from '@angular/router';
 
 import { AppComponent }           from './components/app.component';
+import { HomeComponent }          from './components/home.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
 import { 
   SimpleNotificationsModule, 
@@ -70,7 +71,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
   ],
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   bootstrap:    [ AppComponent ]
 })
