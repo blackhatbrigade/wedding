@@ -1,7 +1,7 @@
 /**
  * Angular 2 core injectable object for creating services.
  */
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -49,12 +49,16 @@ export class AuthService {
   // Observable streams
   authChanged$ = this.authChangedSource.asObservable();
 
-  constructor(private http: Http) {
+  private http: Http;
+  constructor(injector: Injector) {
+    setTimeout(() => {
+      this.http = injector.get(Http);
+    });
 
     this.user = this.getUser();
     
     // user not logged in
-    if (!this.user) {
+    if (!this.isLogged()) {
       this.loggedIn = false;
       this.user = new User();
     } else {
@@ -65,7 +69,7 @@ export class AuthService {
   }
 
   isLogged() {
-    if (this.user.username) {
+    if (this.loggedIn) {
       return true;
     } else {
       return false;
@@ -91,17 +95,7 @@ export class AuthService {
       .subscribe((res: Response) => {
         let body = res.json();
 
-        this.user = new User();
-        // Save the user information for use later.
-        this.user._id = body.user._id;
-        this.user.firstName = body.user.firstName;
-        this.user.lastName = body.user.lastName;
-        this.user.displayName = body.user.displayName;
-        this.user.email = body.user.email;
-        this.user.username = body.user.username;
-        this.user.profileImageURL = body.user.profileImageURL;
-        this.user.role = body.user.role;
-        this.user.subroles = body.user.subroles;
+        this.user = body.user;
         this.saveUser();
         this.loggedIn = true;
 
@@ -179,6 +173,18 @@ export class AuthService {
     this.authChangedSource.next(data);
   }
 
+  updateUser() {
+    let options = new RequestOptions({
+      headers: new Headers({
+        'update-user': 'true'
+      })
+    });
+
+    this.http.get('api/users/' + this.user._id, options).subscribe((res: Response) => {
+      let data = res.json();
+      this.setUser(data);
+    });
+  }
 
   private saveUser(): void {
     localStorage.setItem('user', JSON.stringify(this.user));
