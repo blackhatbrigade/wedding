@@ -1,0 +1,11 @@
+{
+  "generator-2mean": {
+    "DependencyList": "logger",
+    "ModuleName": "gallery",
+    "promptValues": {
+      "moduleName": "gallery",
+      "modelName": "picture"
+    },
+    "ModelName": "picture"
+  }
+}
