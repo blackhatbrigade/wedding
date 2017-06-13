@@ -64,9 +64,10 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
         backend: XHRBackend,
         options: BaseRequestOptions,
         router: Router,
-        notificationsService: NotificationsService
-      ) => new AuthHttpService(backend, options, router, notificationsService),
-      deps: [ XHRBackend, BaseRequestOptions, Router, NotificationsService ]
+        notificationsService: NotificationsService,
+        authService: AuthService
+      ) => new AuthHttpService(backend, options, router, notificationsService, authService),
+      deps: [ XHRBackend, BaseRequestOptions, Router, NotificationsService, AuthService ]
     }
   ],
   declarations: [

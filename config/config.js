@@ -24,7 +24,10 @@ module.exports = {
     port_http: process.env.TOOMEAN_APP_PORT || 3080,
     port_https: process.env.TOOMEAN_APP_HTTPS_PORT || 3443,
     // TODO in production default to true
-    force_https: process.env.TOOMEAN_APP_FORCE_HTTPS || false
+    force_https: process.env.TOOMEAN_APP_FORCE_HTTPS || false,
+    // default is 15 minutes
+    requireEmailVerification: process.env.TOOMEAN_APP_REQUIRE_EMAIL_VERIFICATION || false,
+    emailVerificationTTL: process.env.TOOMEAN_APP_EMAIL_VERIFICATION_TTL || 15 * 60 * 1000
   },
   uploads: {
     root: 'uploads',
@@ -55,6 +58,17 @@ module.exports = {
   aws: {
     access_key_id: process.env.AWS_ACCESS_KEY_ID,
     secret_access_key: process.env.AWS_SECRET_ACCESS_KEY,
-    default_region: process.env.AWS_DEFAULT_REGION
+    default_region: process.env.AWS_DEFAULT_REGION,
+    ses: {
+      // enables or disables ses functionality
+      enabled: process.env.AWS_SES_ENABLED || false,
+      // email address to send ses messages from. this must be verified in ses
+      from: process.env.AWS_SES_FROM || undefined
+    }
+  },
+  // controls emails for user verification and shared module send functionality
+  email: {
+    provider: process.env.TOOMEAN_EMAIL_PROVIDER || undefined,
+    from: process.env.TOOMEAN_EMAIL_FROM || undefined
   }
 };
