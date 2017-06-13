@@ -10,6 +10,7 @@ import {
 } from '@angular/router';
 
 import { AppComponent }           from './components/app.component';
+import { HomeComponent }          from './components/home.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
 import { 
   SimpleNotificationsModule, 
@@ -33,6 +34,7 @@ import {
 } from '@angular/http';
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
+import { GalleryModule } from '../../gallery/client/gallery.module';
 
 @NgModule({
   imports:      [
@@ -46,7 +48,8 @@ import { ActivatedRoute }         from '@angular/router';
     AppRoutingModule,
     RoleModule,
     SimpleNotificationsModule,
-    PushNotificationsModule
+    PushNotificationsModule,
+    GalleryModule
   ],
   providers: [
     UserService,
@@ -68,7 +71,8 @@ import { ActivatedRoute }         from '@angular/router';
   ],
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   bootstrap:    [ AppComponent ]
 })

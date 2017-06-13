@@ -29,6 +29,9 @@ watch for changes and compile typescript when a change is detected.
 
 ## Configure
 
+### App Name
+set `TOOMEAN_APP_NAME` to define a name for the app in logs.
+
 ### Hostname
 If you are developing locally then you should be fine without this step.
 Otherwise you must set the `TOOMEAN_APP_HOST` environment variable to the
@@ -86,6 +89,13 @@ Optionally you can also enable the following environment variables:
 - `TOOMEAN_ES_CONSISTENCY`
 - `TOOMEAN_LOG_LEVEL`
 
+To enable aws es service integration (signed requests) in addition to the above
+set:
+
+- `TOOMEAN_ES_AWS` to `true`
+- `AWS_ACCESS_KEY_ID` (see s3 section)
+- `AWS_SECRET_KEY`
+
 # Too Mean
 
 ## Static Assets
@@ -103,7 +113,32 @@ export SomeComponent {
 
 Webpack will replace the required image with its path in the `dist` directory.
 
-## File Uploader
+## Shared Module Components
+There are several components in the shared module that can be used for common
+functionality. To be used, the shared module must be in the imports list of
+the module that will use them.
+
+### Spinner
+To use, use the `spinner` selector. Be sure to bind the `srMessage` property
+to set a message to be presented to screen readers. Below is an example usage:
+
+```
+@Component({
+  template: '<spinner *ngIf="loading" [srMessage]="'loading resource'"></spinner>
+})
+export class SampleComponent {
+  loading: boolean;
+
+  constructor() {
+    this.loading = true;
+    service.loadResource().subscribe(
+      (data) => { /* use resource */ },
+      (error) => {},
+      () => { this.loading = false; });
+  }
+}
+```
+### File Uploader
 :warning: This feature is in development. It might break :warning:
 
 To use the included file uploader (built around 
@@ -115,7 +150,7 @@ to store uploaded files to either the local file system or S3. It expects
 a config object. See the profile picture upload controller for how to use
 it. 
 
-### Sample configs:
+#### Sample configs:
 
 ```
 {
