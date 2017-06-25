@@ -6,7 +6,7 @@ import { Injectable, Inject } from '@angular/core';
 /**
  * Get the picture class model.
  */
-import { Picture } from '../models/picture.model';
+import { Gallery } from '../models/gallery.model';
 
 /**
  * Pull in the necessary HTTP objects.
@@ -22,7 +22,6 @@ import {
 } from '@angular/http';
 
 import { Observable }   from 'rxjs/Rx';
-import { FileUploader } from 'ng2-file-upload';
 
 /*
  * Reactive library.
@@ -34,36 +33,40 @@ import 'rxjs/add/operator/map';
  */
 @Injectable()
 export class GalleryService {
-  /**
-   * for encapsulation
-   */
-  clearUploaderQueue() : void {
-    this.uploader.clearQueue();
+
+  constructor(
+    private http: Http
+  ) {
+
   }
 
-  read(pictureId: string) : Observable<Picture> {
-    return this.http.get('api/pictures/' + pictureId)
+  read(pictureId: string) : Observable<Gallery> {
+    return this.http.get('api/gallery/' + pictureId)
       .map(this.extractData);
   }
 
-  create(newPicture: Picture) : Observable<Picture> {
-    return this.http.post('api/pictures', newPicture)
+  create(newGallery: Gallery) : Observable<Gallery> {
+    return this.http.post('api/gallery', newGallery)
       .map(this.extractData);
   }
 
-  update(updatedPicture: Picture) : Observable<Picture> {
-    return this.http.put('api/pictures', updatedPicture)
+  update(updatedGallery: Gallery) : Observable<Gallery> {
+    return this.http.put('api/gallery', updatedGallery)
       .map(this.extractData);
   }
 
-  delete(pictureId: string) : Observable<Picture> {
-    return this.http.delete('api/pictures/' + pictureId)
+  delete(pictureId: string) : Observable<Gallery> {
+    return this.http.delete('api/gallery/' + pictureId)
       .map(this.extractData);
   }
 
-  register(newPicture: Picture) : Observable<Picture> {
-    return this.http.post('api/pictures/register', newPicture)
+  register(newGallery: Gallery) : Observable<Gallery> {
+    return this.http.post('api/gallery/register', newGallery)
       .map(this.extractData);
+  }
+
+  list() : Observable<any> {
+    return this.http.get('api/gallery').map(this.extractData);
   }
 
   private extractData(res: Response | any) {

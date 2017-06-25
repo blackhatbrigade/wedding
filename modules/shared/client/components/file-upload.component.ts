@@ -112,11 +112,11 @@ export class FileUploadComponent implements ControlValueAccessor, OnChanges {
    */
   onCompleteItem = (item: any, response: any, status: number, headers:any) : void => {
     // upload succeeded
-    if (status === 200) {
+    if (status === 200 || status === 201) {
       // Get new url
       let userRes = JSON.parse(response);
       // tell parent component
-      this.uriChanged.emit(userRes.profileImageURL);
+      this.uriChanged.emit(userRes);
 
       // Clear the uploader queue
       this.uploader.queue = [];

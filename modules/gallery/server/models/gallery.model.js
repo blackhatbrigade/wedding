@@ -17,7 +17,14 @@ var gallerySchema = new Schema({
     type: String,
     required: true,
     unique: true
-  }
+  },
+  pictures: [ {
+    uploader: String,
+    url: String,
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    public_read: Boolean
+  } ],
+  thumbnail: String
 });
 
 mongoose.model('gallery', gallerySchema);

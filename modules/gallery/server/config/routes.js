@@ -1,5 +1,11 @@
 module.exports = [
   {
+    route: '/gallery',
+    type: 'GET',
+    method: 'list',
+    secure: true
+  },
+  {
     route: '/gallery/:galleryId',
     type: 'GET',
     method: 'read',
