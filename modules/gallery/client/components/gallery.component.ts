@@ -27,7 +27,7 @@ export class GalleryComponent {
     private notificationsService: NotificationsService,
     private router:               Router
   ) {
-    endpoint = '/api/ga
+    this.endpoint = '/api/gallery/upload';
   }
 
   uriChange(newUri: string) {

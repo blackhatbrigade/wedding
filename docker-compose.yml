@@ -13,9 +13,10 @@ services:
       - VIRTUAL_PORT=3080
       - LETSENCRYPT_HOST=dev.dcwright.xyz
       - LETSENCRYPT_EMAIL=dylan@dcwright.xyz
-      - TOOMEAN_APP_NAME=dev.dcwright.xyz
-      - TOOMEAN_AWS_S3_DEST_URL=https://s3-us-west-2.amazonaws.com/wedding-uploads
+      - TOOMEAN_APP_HOST=dev.dcwright.xyz
+      - TOOMEAN_AWS_S3_DEST_URL=https://s3-us-west-2.amazonaws.com/wedding-uploads/
       - TOOMEAN_AWS_S3_BUCKET=wedding-uploads
+      - TOOMEAN_UPLOADS_STRATEGY=s3
     env_file:
       - .env
   mongo:

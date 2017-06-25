@@ -22,5 +22,11 @@ module.exports = [
     type: 'DELETE',
     method: 'delete',
     secure: true
+  },
+  {
+    route: '/gallery/upload',
+    type: 'POST',
+    method: 'uploadFile',
+    secure: true
   }
 ];

@@ -4,7 +4,7 @@ import { BrowserModule }                      from '@angular/platform-browser';
 import { RouterModule, Routes }               from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NotificationsService }               from 'angular2-notifications';
-
+import { SharedModule } from '../../shared/client/shared.module';
 /* Services */
 import { GalleryService }       from './services/gallery.service';
 
@@ -19,7 +19,8 @@ import { GalleryRoutingModule } from './config/gallery-routing.module';
     BrowserModule,
     GalleryRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     GalleryComponent

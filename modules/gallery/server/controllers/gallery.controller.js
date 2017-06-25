@@ -6,6 +6,8 @@ var _ = require('lodash');
 
 var gallery = mongoose.model('gallery');
 
+const config = require('../../../../config/config');
+
 function galleryController(logger, shared) {
   const GET_LIMIT = 10;
 
@@ -192,6 +194,7 @@ function galleryController(logger, shared) {
 
     return shared.uploader.upload(uploadConfig).then((url) => {
       res.status(201).send({ data: { url: url } });
+      console.log(url);
     }).catch((error) => {
       res.status(500).send({ error: error });
     });
@@ -308,7 +311,8 @@ function galleryController(logger, shared) {
     update        : update,
     list          : list,
     delete        : deletegallery,
-    isAuthorized  : isAuthorized
+    isAuthorized  : isAuthorized,
+    uploadFile    : uploadFile
   };
 }
 
