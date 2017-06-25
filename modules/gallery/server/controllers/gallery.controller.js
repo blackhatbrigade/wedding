@@ -179,6 +179,24 @@ function galleryController(logger, shared) {
     });
   };
 
+  /**
+   * Upload a file
+   */
+  function uploadFile(req, res, next) {
+    let uploadConfig = {
+      strategy: 's3',
+      req: req,
+      res: res,
+      s3: config.uploads.s3
+    };
+
+    return shared.uploader.upload(uploadConfig).then((url) => {
+      res.status(201).send({ data: { url: url } });
+    }).catch((error) => {
+      res.status(500).send({ error: error });
+    });
+  }
+
   /*
    * ------------------------------ Private Methods -----------------------------------
    */
