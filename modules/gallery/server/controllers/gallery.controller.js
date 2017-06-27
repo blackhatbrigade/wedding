@@ -26,7 +26,7 @@ function galleryController(logger, shared) {
 
     // Make sure this isn't actually an update.
     gallerySearch.then((results) => {
-      if (results) {
+      if (results.length) {
         return res.status(400).send('gallery exists');
       } else {
         logger.info('Creating gallery ' + model.name);
@@ -88,7 +88,7 @@ function galleryController(logger, shared) {
     // Fire the main list query.
     gallery
       .find({})
-      .select({'name': 1})
+      .select({'name': 1, 'thumbnail': 1})
       .sort({
         name: 1
       })
@@ -185,6 +185,11 @@ function galleryController(logger, shared) {
    * Upload a file
    */
   function uploadFile(req, res, next) {
+    let query;
+
+    let user = req.user;
+    let galleryId = req.query.galleryId;
+
     let uploadConfig = {
       strategy: 's3',
       req: req,
@@ -192,11 +197,35 @@ function galleryController(logger, shared) {
       s3: config.uploads.s3
     };
 
-    return shared.uploader.upload(uploadConfig).then((url) => {
-      res.status(201).send({ data: { url: url } });
-      console.log(url);
+    query = gallery.findById(galleryId);
+
+    return query.exec().then((foundGallery) => {
+      if (foundGallery) {
+        return shared.uploader.upload(uploadConfig).then((url) => {
+          foundGallery.pictures.push({
+            url: url,
+            user: user._id,
+            uploader: user.displayName
+          });
+
+          if (!foundGallery.thumbnail) {
+            foundGallery.thumbnail = url;
+          }
+
+          return foundGallery.save().then((savedGallery) => {
+            res.status(201).send({ url: url, gallery: savedGallery });
+          });
+        });
+      } else {
+        throw new Error('not found');
+      }
     }).catch((error) => {
-      res.status(500).send({ error: error });
+      if (error.message === 'not found') {
+        res.status(404).send();
+      } else {
+        logger.error('in gallery#uploadFile', error);
+        res.status(500).send();
+      }
     });
   }
 

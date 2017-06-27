@@ -1,0 +1,16 @@
+<div class="card-deck">
+  <div class="card" *ngFor="let gallery of galleries">
+    <img *ngIf="gallery.thumbnail" class="card-img-top img-thumbnail" [src]="gallery.thumbnail">
+    <div class="card-body">
+      <h4 class="card-header">{{ gallery.name }}</h4>
+      <button class="btn btn-secondary" type="button" [routerLink]="[ './', 'edit', gallery._id ]">Edit</button>
+      <button class="btn btn-secondary" type="button" [routerLink]="[ './', 'view', gallery._id ]">View</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <button class="btn btn-primary" type="button" [routerLink]="[ './', 'create' ]">New</button>
+    </div>
+  </div>
+</div>

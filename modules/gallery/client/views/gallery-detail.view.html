@@ -1,0 +1,5 @@
+<div *ngFor="let picture of gallery?.pictures">
+  <img class="img-thumbnail" [src]="picture.url">
+</div>
+<image-file-select #fileUpload [endpoint]="endpoint" (uriChanged)="uriChange($event)"></image-file-select>
+<button type="submit" class="btn btn-primary" (click)="fileUpload.uploadFile()">Upload</button>

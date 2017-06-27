@@ -19,18 +19,12 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
   templateUrl: './../views/gallery.view.html'
 })
 export class GalleryComponent {
-  endpoint: string;
-
   constructor (
     private authService:          AuthService,
     private galleryService:       GalleryService,
     private notificationsService: NotificationsService,
     private router:               Router
   ) {
-    this.endpoint = '/api/gallery/upload';
   }
 
-  uriChange(newUri: string) {
-    console.log(newUri);
-  }
 }
