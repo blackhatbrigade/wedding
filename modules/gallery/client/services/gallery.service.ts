@@ -55,8 +55,8 @@ export class GalleryService {
       .map(this.extractData);
   }
 
-  delete(pictureId: string) : Observable<Gallery> {
-    return this.http.delete('api/gallery/' + pictureId)
+  delete(galleryId: string) : Observable<Gallery> {
+    return this.http.delete('api/gallery/' + galleryId)
       .map(this.extractData);
   }
 

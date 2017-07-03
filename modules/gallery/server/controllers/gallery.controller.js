@@ -21,6 +21,7 @@ function galleryController(logger, shared) {
    */
   function create(req, res) {
     var model = mapBodyToModel(req.body);
+    model.creator = req.user._id;
     
     var gallerySearch = findgalleryByName(model.name);
 
@@ -59,8 +60,12 @@ function galleryController(logger, shared) {
 
     var galleryId = req.params.galleryId;
 
-    findgalleryById(galleryId).then((result) => {
-      return res.status(200).send(result);
+    findgalleryById(galleryId).exec().then((result) => {
+      if (result) {
+        return res.status(200).send(result);
+      } else {
+        return res.status(404).send();
+      }
     },(err) => {
       logger.error('Error looking up gallery: ', err);
 
@@ -114,39 +119,32 @@ function galleryController(logger, shared) {
    * @return {Response}
    */
   function update(req, res) {
-    var body = mapBodyToModel(req.body);
+    let body = req.body;
     
     var user = req.user;
 
     var model = findgalleryById(req.body._id);
 
-    // Make sure user has permissions to update this company.
-    isAuthorized(user, req.body._id)
-      .then((authorized) => {
-        if (authorized) {
-          model.exec((err, result) => {
-            mapOverModel(body, result);
+    model.exec().then((foundGallery) => {
+      if(isAuthorized(user, foundGallery, 'write')) {
+        mapOverModel(body, foundGallery);
 
-            result.save((err) => {
-              if (err) {
-                // TODO: This is not a specific error, but the whole mongoose error object.
-                logger.error('Error updating organization', err);
-
-                return res.status(500).send('Internal Server Error');
-              }
-              return res.status(200).send({data: result._id + ' updated'});
-            });
-          });
-        } else {
-          logger.info('Unauthorized attempt to modify an gallery');
-          res.status(401).send('Unauthorized');
-        }
-      }, (error) => {
-        // TODO: This is not a specific error, but the whole mongoose error object.
-        logger.error('Error finding out if user is authorized to modify organization: ', error);
-
-        res.status(500).send('Internal Server Error');
-      });
+        return foundGallery.save();
+      } else {
+        throw new Error('Forbidden');
+      }
+    }).then((savedGallery) => {
+      res.status(200).send({ data: savedGallery });
+    }).catch((error) => {
+      if (error.message === 'Forbidden') {
+        res.status(403).send();
+      } else if (error.errors) {
+        res.status(400).send({ error: error.errors });
+      } else {
+        logger.error('Error in GalleryController#update', error);
+        res.status(500).send();
+      }
+    });
   };
 
   /**
@@ -158,26 +156,29 @@ function galleryController(logger, shared) {
    * @return {Response}
    */
   function deletegallery(req, res) {
-    var modelId = req.params.gallery;
+    var modelId = req.params.galleryId;
 
-    gallery.findOne({_id: modelId})
-      .exec((err, result) => {
-        if (err) {
-          logger.info('Error finding target gallery to delete.', err.errmsg);
-
-          return res.status(500).send('Internal Server Error');
-        }
-
-        result.remove(function(err) {
-        if (err) {
-          // This needs more robust error handling.
-          logger.error('Error deleting gallery', err.errmsg);
-
-          return res.status(500).send('Internal Server Error');
+    gallery.findOne({ _id: modelId }).exec().then((foundGallery) => {
+      if (foundGallery) {
+        if (isAuthorized(req.user, foundGallery, 'write')) {
+          return foundGallery.remove();
         } else {
-          res.status(200).send(result);
+          throw new Error('Forbidden');
         }
-      });
+      } else {
+        throw new Error('Not found');
+      }
+    }).then((removed) => {
+      res.status(204).send();
+    }).catch((error) => {
+      if (error.message === 'Not found') {
+        res.status(404).send();
+      } else if (error.message === 'Forbidden') {
+        res.status(403).send();
+      } else {
+        logger.error('Error in GalleryController#deletegallery', error);
+        res.status(500).send();
+      }
     });
   };
 
@@ -241,8 +242,6 @@ function galleryController(logger, shared) {
    * @param {gallery} The mongoose model.
    */
   function findgalleryById(id) {
-    var deferred = q.defer();
-
     return gallery.findOne({'_id': id});
   }
 
@@ -315,7 +314,7 @@ function galleryController(logger, shared) {
 
     for(index in Object.keys(schemaFields)) {
       let realIndex = Object.keys(schemaFields)[index];
-      if (body[realIndex]) {
+      if (body[realIndex] !== undefined) {
         org[realIndex] = body[realIndex];
       }
     }
@@ -326,12 +325,29 @@ function galleryController(logger, shared) {
    *
    * @param {User}    user      The mongoose user object for the current user making the request.
    * @param {string}  resource  The resource being requested.
+   * @param {string}  operation - whether the resource is being read or written
    *
    * @return {boolean}
    */
-  function isAuthorized(user, resource) {
-    // TODO: Currently set to deny any request not approved by the resource manager.
-    return false;
+  function isAuthorized(user, resource, operation) {
+    let authorized = false;
+
+    if (operation === 'read') {
+      // check if the repo is public read
+      if (resource.publicRead) {
+        authorized = true;
+      } else {
+        authorized = resource.allowedUsers.includes(user._id) || user._id.equals(resource.creator);
+      }
+    } else if (operation === 'write') {
+      if (resource.publicWrite) {
+        authorized = true;
+      } else {
+        authorized = resource.allowedUsers.includes(user._id) || user._id.equals(resource.creator);
+      }
+    } // else not sure what you passed, so go away
+    
+    return authorized;
   }
 
   return {

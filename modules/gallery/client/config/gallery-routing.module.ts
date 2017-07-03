@@ -18,12 +18,12 @@ const GalleryRoutes: Routes = [
     component: GalleryFormComponent
   },
   {
-    path: 'gallery/edit/:galleryId',
-    component: GalleryFormComponent
+    path: 'gallery/:galleryId',
+    component: GalleryDetailComponent
   },
   {
-    path: 'gallery/view/:galleryId',
-    component: GalleryDetailComponent
+    path: 'gallery/:galleryId/edit',
+    component: GalleryFormComponent
   }
 ];
 

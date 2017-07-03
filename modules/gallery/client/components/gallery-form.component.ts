@@ -6,7 +6,8 @@ import { GalleryService } from '../services/gallery.service';
 import { Gallery } from '../models/gallery.model';
 
 @Component({
-  templateUrl: '../views/gallery-form.view.html'
+  templateUrl: '../views/gallery-form.view.html',
+  styleUrls: [ '../styles/gallery-form.style.css' ]
 })
 export class GalleryFormComponent {
   gallery: Gallery;
@@ -42,5 +43,11 @@ export class GalleryFormComponent {
         this.router.navigate([ '../' ], { relativeTo: this.route });
       });
     }
+  }
+
+  delete() : void {
+    this.galleryService.delete(this.gallery._id).subscribe((data) => {
+      this.router.navigate([ '/gallery' ]);
+    });
   }
 }
