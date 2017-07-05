@@ -5,6 +5,7 @@ import { RouterModule, Routes }               from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NotificationsService }               from 'angular2-notifications';
 import { SharedModule } from '../../shared/client/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /* Services */
 import { GalleryService }       from './services/gallery.service';
 
@@ -23,7 +24,8 @@ import { GalleryRoutingModule } from './config/gallery-routing.module';
     GalleryRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   declarations: [
     GalleryComponent,
