@@ -1,0 +1,10 @@
+<button class="btn btn-secondary" [routerLink]="[ './', 'edit' ]" *ngIf="isAllowedToEdit()">
+  Edit
+</button>
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor="let picture of gallery?.pictures">
+    <img class="d-block img-fluid" [src]="picture.url">
+  </ng-template>
+</ngb-carousel>
+<image-file-select #fileUpload [endpoint]="endpoint" (uriChanged)="uriChange($event)"></image-file-select>
+<button type="submit" class="btn btn-primary" (click)="fileUpload.uploadFile()">Upload</button>

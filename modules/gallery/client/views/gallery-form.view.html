@@ -1,0 +1,35 @@
+<form (ngSubmit)="submit()">
+  <div class="form-group">
+    <input [(ngModel)]="gallery.name" class="form-control" type="text" name="name" required placeholder="name">
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="publicRead" [(ngModel)]="gallery.publicRead">
+      Public Read
+    </label>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="publicWrite" [(ngModel)]="gallery.publicWrite">
+      Public Write
+    </label>
+  </div>
+  <div class="card-deck">
+    <div class="card" *ngFor="let picture of gallery.pictures" (click)="gallery.thumbnail = picture.url">
+      <img class="card-img-top img-thumbnail"
+           [class.gallery-thumbnail-checked]="picture.url === gallery.thumbnail"
+           [src]="picture.url">
+      <div class="d-flex justify-content-center gallery-thumbnail-check"
+           *ngIf="picture.url === gallery.thumbnail">
+        <div class="card-text align-self-center">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="edit">
+    Delete
+  </button>
+</form>

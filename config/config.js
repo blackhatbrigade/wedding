@@ -31,6 +31,14 @@ module.exports = {
   },
   uploads: {
     root: 'uploads',
+    s3: {
+      dest: process.env.TOOMEAN_AWS_S3_DEST_URL,
+      bucket: process.env.TOOMEAN_AWS_S3_BUCKET,
+      acl: 'public-read',
+      limits: {
+        fileSize: 1*1024*1024
+      }
+    },
     profilePicture: {
       allowedTypes: ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
       use: process.env.TOOMEAN_UPLOADS_STRATEGY || 'local',

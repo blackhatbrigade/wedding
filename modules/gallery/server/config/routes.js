@@ -1,5 +1,11 @@
 module.exports = [
   {
+    route: '/gallery',
+    type: 'GET',
+    method: 'list',
+    secure: true
+  },
+  {
     route: '/gallery/:galleryId',
     type: 'GET',
     method: 'read',
@@ -21,6 +27,12 @@ module.exports = [
     route: '/gallery/:galleryId',
     type: 'DELETE',
     method: 'delete',
+    secure: true
+  },
+  {
+    route: '/gallery/upload',
+    type: 'POST',
+    method: 'uploadFile',
     secure: true
   }
 ];

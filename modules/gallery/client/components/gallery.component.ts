@@ -27,21 +27,4 @@ export class GalleryComponent {
   ) {
   }
 
-  /**
-   * Uploads the image.
-   */
-  upload () {
-    this.galleryService.uploadPicture((item: any, response: any, status: number, headers: any) => {
-      if (status === 200) {
-        let res = JSON.parse(response);
-
-        // clear the queue so next files will not accumulate
-        this.galleryService.clearUploaderQueue();
-        this.notificationsService.success('File uploaded', '');
-      } else if (status === 401) {
-        this.notificationsService.alert('Unauthenticated', 'You need to log back in');
-        this.router.navigate([ '/signin' ]);
-      }
-    });
-  }
 }

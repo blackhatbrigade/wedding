@@ -6,7 +6,7 @@ import { Injectable, Inject } from '@angular/core';
 /**
  * Get the picture class model.
  */
-import { Picture } from '../models/picture.model';
+import { Gallery } from '../models/gallery.model';
 
 /**
  * Pull in the necessary HTTP objects.
@@ -22,7 +22,6 @@ import {
 } from '@angular/http';
 
 import { Observable }   from 'rxjs/Rx';
-import { FileUploader } from 'ng2-file-upload';
 
 /*
  * Reactive library.
@@ -34,85 +33,40 @@ import 'rxjs/add/operator/map';
  */
 @Injectable()
 export class GalleryService {
-  /**
-   * The uploader object.
-   */
-  uploader: FileUploader;
-
-  /**
-   * Private variable that holds an array of the allowed types.
-   */
-  private allowedTypes: Array<string> = [
-    'image/png',
-    'image/gif',
-    'image/jpeg'
-  ];
-
-  private uploadURL: string = '/api/gallery';
-
-  /**
-   * 20Mb should be big enough (I hope).
-   */
-  private maxSize: number = 1024 * 1024 * 20;
 
   constructor(
-    private http: Http,
-  ) { 
-    this.uploader = new FileUploader({ url: this.uploadURL });
+    private http: Http
+  ) {
+
   }
 
-  /**
-   * called to upload the last item in the uploader queue
-   *  @param {(item: any, response: any, headers: any) => void} onCompleteItem
-   *    a callback function (kind of) which is called after the upload
-   *    process is done
-   *  //TODO either switch uploader or add cb's for error/success
-   */
-  uploadPicture(onCompleteItem : (item: any, response: any, status: number, headers: any) => void) {
-    // Only if file(s) are queued
-    if (this.uploader.queue.length > 0) {
-      this.uploader.onCompleteItem = onCompleteItem;
-
-      // we only want to upload the last file the user selected
-      let fileItem = this.uploader.queue[this.uploader.queue.length-1];
-
-      // I wish this library registered callbacks here as part of the call
-      fileItem.upload();
-    } else {
-      // No files to upload
-    }
-  }
-
-  /**
-   * for encapsulation
-   */
-  clearUploaderQueue() : void {
-    this.uploader.clearQueue();
-  }
-
-  read(pictureId: string) : Observable<Picture> {
-    return this.http.get('api/pictures/' + pictureId)
+  read(pictureId: string) : Observable<Gallery> {
+    return this.http.get('api/gallery/' + pictureId)
       .map(this.extractData);
   }
 
-  create(newPicture: Picture) : Observable<Picture> {
-    return this.http.post('api/pictures', newPicture)
+  create(newGallery: Gallery) : Observable<Gallery> {
+    return this.http.post('api/gallery', newGallery)
       .map(this.extractData);
   }
 
-  update(updatedPicture: Picture) : Observable<Picture> {
-    return this.http.put('api/pictures', updatedPicture)
+  update(updatedGallery: Gallery) : Observable<Gallery> {
+    return this.http.put('api/gallery', updatedGallery)
       .map(this.extractData);
   }
 
-  delete(pictureId: string) : Observable<Picture> {
-    return this.http.delete('api/pictures/' + pictureId)
+  delete(galleryId: string) : Observable<Gallery> {
+    return this.http.delete('api/gallery/' + galleryId)
       .map(this.extractData);
   }
 
-  register(newPicture: Picture) : Observable<Picture> {
-    return this.http.post('api/pictures/register', newPicture)
+  register(newGallery: Gallery) : Observable<Gallery> {
+    return this.http.post('api/gallery/register', newGallery)
       .map(this.extractData);
+  }
+
+  list() : Observable<any> {
+    return this.http.get('api/gallery').map(this.extractData);
   }
 
   private extractData(res: Response | any) {
