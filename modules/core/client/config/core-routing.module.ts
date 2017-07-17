@@ -10,10 +10,6 @@ import {
 
 /* this defines the global users routes */
 const usersRoutes: Routes = [
-  {
-    path: '',
-    component: CoreLandingPageComponent
-  }
 ];
 
 @NgModule({
