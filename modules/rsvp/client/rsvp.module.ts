@@ -7,28 +7,29 @@ import { AppModule }      from '../../app/client/app.module';
 import { RsvpRoutingModule }      from './config/rsvp-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { ListArticlesComponent } from './components/list-articles.component';
-import { ArticleDetailComponent } from './components/article-detail.component';
+/* import the components this module uses */
+import { ListRsvpComponent } from '../components/list-rsvp.component';
+import { RsvpFormComponent } from '../components/rsvp-form.component';
 
 @NgModule({
   imports:      [
     BrowserModule,
     NgbModule,
     HttpModule,
-    ArticlesRoutingModule,
+    RsvpRoutingModule,
     FormsModule
 
   ],
   /*components available inside of this module */
   declarations: [
-    ListArticlesComponent,
-    ArticleDetailComponent
+    ListRsvpComponent,
+    RsvpFormComponent
   ],
   /*components available to other modules */
   exports: [],
 
   /* which components to load when starting this module */
-  bootstrap:    [ ListArticlesComponent]
+  bootstrap:    [ RsvpFormComponent]
 })
 
-export class ArticleModule {}
+export class RsvpModule {}
