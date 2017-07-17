@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 /* import the components this module uses */
-import { ListArticlesComponent } from '../components/list-articles.component';
-import { ArticleDetailComponent } from '../components/article-detail.component';
+import { ListRsvpComponent } from '../components/list-rsvp.component';
+import { RsvpFormComponent } from '../components/rsvp-form.component';
 
 
 /* register the global routes for RSVP components */
