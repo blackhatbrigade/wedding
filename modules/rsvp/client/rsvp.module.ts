@@ -8,8 +8,8 @@ import { RsvpRoutingModule }      from './config/rsvp-routing.module';
 import { FormsModule } from '@angular/forms';
 
 /* import the components this module uses */
-import { ListRsvpComponent } from '../components/list-rsvp.component';
-import { RsvpFormComponent } from '../components/rsvp-form.component';
+import { ListRsvpsComponent } from './components/list-rsvps.component';
+import { RsvpFormComponent } from './components/rsvp-form.component';
 
 @NgModule({
   imports:      [
@@ -22,7 +22,7 @@ import { RsvpFormComponent } from '../components/rsvp-form.component';
   ],
   /*components available inside of this module */
   declarations: [
-    ListRsvpComponent,
+    ListRsvpsComponent,
     RsvpFormComponent
   ],
   /*components available to other modules */
