@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var RsvpSchema = new Schema({
   _id: Schema.Types.ObjectId,
   name: {
-  	type: String,
+    type: String,
     required: true
   },
   attending: {
@@ -26,6 +26,6 @@ var RsvpSchema = new Schema({
     type: Date,
     default: Date.now
   }
-);
+});
 
-mongoose.model('Rsvp', ArticleSchema);
+mongoose.model("Rsvp", RsvpSchema, "rsvps");
