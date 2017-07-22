@@ -31,13 +31,14 @@ function rsvpController(logger) {
 
   /**
    * Returns promise resolving to a list of all rsvps,
-   * sorted by name
+   * sorted by attending then name
    * GET: /api/rsvps
    * @param { Object } req - the HTTP request object
    * @param { Object } res - the HTTP response object
    */
   function readList(req, res) {
     return Rsvp.find({})
+      .sort({ attending: 1 })
       .sort({ name: 1 })
       .exec()
       .then(data => {
@@ -52,47 +53,55 @@ function rsvpController(logger) {
   /**
    * Returns an rsvp matching the search terms
    * @param { Object } req - the HTTP request object
-   * @param { string= } req.params.name - optional. a name to search by
-   * @param { string= } req.params.note - optional. note text to search by
+   * @param { Boolean } req.params.attending - default is true
+   * @param { String= } req.params.name - optional. a name to search by
+   * @param { String= } req.params.note - optional. note text to search by
    * @param { Object } res - the HTTP response object
    */
   function search(req, res) {
     if (!req.params.name && !req.params.note) {
       return readList(req, res);
     }
-    //start off with an empty $or query
+    let attending = req.params.attending || true;
+    //initial query with outer $and and with empty $or
     let filter = {
-      $or: [
+      $and: [
         {
-          name: {}
+          attending: attending
         },
         {
-          note: {}
-        }
-      ]
+          $or: [
+            {
+              name: {}
+            },
+            {
+              note: {}
+            }
+          ]
+        }]
     };
-    
+
     if (req.params.name) {
-        filter.name = { $regex: /req.params.name/, $options: 'ix' }
-      }
+      filter.name = { $regex: /req.params.name/, $options: 'ix' }
     }
+
     if (req.params.note) {
       filter.note = { $regex: /req.params.note/, $options: 'ix' }
     }
     return Rsvp.find(filter).exec()
       .then(results => {
-        res.status(200).send({rsvps: results});
+        res.status(200).send({ rsvps: results });
       })
       .catch(error => {
         logger.error('Error searching rsvp', error.errmsg);
         res.status(500).send();
-      })
-}
+      });
+  }
 
-return {
-  create: create,
-  readList: readList,
-  search: search
-}
+  return {
+    create: create,
+    readList: readList,
+    search: search
+  }
 
-module.exports = rsvpController;
+  module.exports = rsvpController;

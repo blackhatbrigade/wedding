@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * User Schema
+ * Rsvp Schema
  */
 var RsvpSchema = new Schema({
   _id: Schema.Types.ObjectId,
