@@ -29,10 +29,18 @@ export class RsvpService {
 
 	postRsvp(formData: Rsvp) : Observable<any>
 	{
-	  return this.http.post('api/articles', formData)
+	  return this.http.post('api/rsvp', formData)
     .map(this.extractData);		
   }
 
+	searchRsvps(searchParams: any): Observable<Array<Rsvp>>
+	{
+		let attending = searchParams['attending'] || true;
+		let name = searchParams['name'];
+		let note = searchParams['note'];
+		return this.http.get('api/rsvps/search?attending='+attending+'&name='+name+'note='+note)
+		.map((r: Response)=> r.json().rsvps)
+	}
 	private extractData(res: Response | any) {
 		let body = res.json();
 		return body;

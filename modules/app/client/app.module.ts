@@ -26,6 +26,7 @@ import { UsersModule }            from '../../users/client/users.module';
 import { ArticleModule }          from '../../articles/client/articles.module';
 import { AppRoutingModule }       from './app-routing.module';
 import { RoleModule }             from '../../roles/client/roles.module';
+import { RsvpModule }             from '../../rsvp/client/rsvp.module';
  
 import {
   Http,
@@ -49,7 +50,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
     RoleModule,
     SimpleNotificationsModule,
     PushNotificationsModule,
-    GalleryModule
+    GalleryModule,
+    RsvpModule
   ],
   providers: [
     UserService,

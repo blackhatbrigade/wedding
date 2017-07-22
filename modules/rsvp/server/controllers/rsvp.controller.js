@@ -52,6 +52,7 @@ function rsvpController(logger) {
 
   /**
    * Returns an rsvp matching the search terms
+   * GET: /api/rsvps/search
    * @param { Object } req - the HTTP request object
    * @param { Boolean } req.params.attending - default is true
    * @param { String= } req.params.name - optional. a name to search by
@@ -82,11 +83,11 @@ function rsvpController(logger) {
     };
 
     if (req.params.name) {
-      filter.name = { $regex: /req.params.name/, $options: 'ix' }
+      filter.name = { $regex: /req.params.name/, $options: 'ix' };
     }
 
     if (req.params.note) {
-      filter.note = { $regex: /req.params.note/, $options: 'ix' }
+      filter.note = { $regex: /req.params.note/, $options: 'ix' };
     }
     return Rsvp.find(filter).exec()
       .then(results => {
@@ -98,10 +99,13 @@ function rsvpController(logger) {
       });
   }
 
+
   return {
     create: create,
     readList: readList,
     search: search
-  }
 
-  module.exports = rsvpController;
+  };
+}
+
+module.exports = rsvpController;

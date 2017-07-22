@@ -12,7 +12,7 @@ module.exports = [
     secure: true
   },
   {
-    route: '/rsvp/search',
+    route: '/rsvps/search',
     type: 'GET',
     method: 'search',
     secure: true

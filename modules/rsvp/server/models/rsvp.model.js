@@ -16,11 +16,11 @@ var RsvpSchema = new Schema({
     required: true
   },
   attending: {
-    type: boolean,
+    type: Boolean,
     default: true
   },
   note: {
-    type: string,
+    type: String,
     default: ''
   },
   created: {

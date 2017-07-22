@@ -32,7 +32,6 @@ export class ListRsvpsComponent implements OnInit{
 	getRsvps() : void{
 		this.rsvpService.getRsvps()
 			.subscribe((data) => { this.rsvps = data;});
-		
 	}
 	
 	onSelect(rsvp: Rsvp): void{
