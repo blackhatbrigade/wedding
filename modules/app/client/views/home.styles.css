@@ -1,15 +1,25 @@
 .homepage {
+  color: #2d2d2d;
+}
+
+.homepage-title {
   font-family: 'Dancing Script', cursive;
 }
 
-.page-title {
-  min-width: 700px;
+.full-height {
+  height: 100vh;
 }
 
-.home-photo {
-  min-width: 533px;
+.bg-img-home {
+  background-image: url(https://s3-us-west-2.amazonaws.com/bennett-personal/weddingCover.jpg);
+  background-position: center 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.home-descr {
-  min-width: 700px;
+.bg-img-left {
+  background-image: url(http://www.psdgraphics.com/file/light-blue-abstract.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
