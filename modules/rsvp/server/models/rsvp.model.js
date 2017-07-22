@@ -20,7 +20,8 @@ var RsvpSchema = new Schema({
     default: true
   },
   note: {
-    type: string
+    type: string,
+    default: ''
   },
   created: {
     type: Date,
