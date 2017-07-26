@@ -3,7 +3,6 @@ node('2Mean') {
     checkout scm
   }
   stage('Build') {
-<<<<<<< HEAD
     sh '''sudo docker build -t wedding .'''
   }
   stage('Test') {
