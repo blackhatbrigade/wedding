@@ -1,7 +1,8 @@
-import { NgModule }               from '@angular/core';
-import { BrowserModule }          from '@angular/platform-browser';
-import { HttpModule }             from '@angular/http';
-import { NgbModule }              from '@ng-bootstrap/ng-bootstrap';
+import { NgModule }                 from '@angular/core';
+import { BrowserModule }            from '@angular/platform-browser';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
+import { HttpModule }               from '@angular/http';
+import { NgbModule }                from '@ng-bootstrap/ng-bootstrap';
 
 import {
   RouterModule,
@@ -39,6 +40,7 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
 @NgModule({
   imports:      [
     BrowserModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
     HttpModule,
     AuthModule,
