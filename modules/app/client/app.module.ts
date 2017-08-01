@@ -12,6 +12,7 @@ import {
 
 import { AppComponent }           from './components/app.component';
 import { HomeComponent }          from './components/home.component';
+import { InformationComponent }   from './components/information.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
 import { 
   SimpleNotificationsModule, 
@@ -75,7 +76,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    InformationComponent
   ],
   bootstrap:    [ AppComponent ]
 })

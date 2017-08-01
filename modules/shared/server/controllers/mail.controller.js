@@ -55,8 +55,12 @@ function MailController(logger) {
       // use SES transporter to send the message
       transporter.sendMail(email.asObject(), (err, info) => {
         if (err) {
+          logger.error("Error sending email", err);
+
           reject(err);
         } else {
+          logger.info("Email sent", info);
+
           resolve(info);
         }
       });

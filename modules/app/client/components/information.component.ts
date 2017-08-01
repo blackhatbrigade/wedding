@@ -12,10 +12,10 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 /* Module Configuration */
 
 @Component({
-  templateUrl: './../views/home.view.html',
+  templateUrl: './../views/information.view.html',
   styleUrls: [ '../views/home.styles.css']
 })
-export class HomeComponent {
+export class InformationComponent {
   user: any;
 
   constructor (
