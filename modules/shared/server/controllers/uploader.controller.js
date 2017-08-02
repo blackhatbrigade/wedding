@@ -106,7 +106,7 @@ function uploadController(logger) {
       upload(config.req, config.res, (err) => {
         if (err) {
           logger.error(err);
-          throw new Error('Error while uploading with s3 strategy');
+          reject(new Error('Error while uploading with s3 strategy'));
         } else {
           resolve(url);
         }
@@ -124,7 +124,7 @@ function uploadController(logger) {
           s3.deleteObject(params, (err, data) => {
             if (err) {
               logger.error('Error while deleting object on s3', err);
-              throw err;
+              reject(err);
             } else {
               logger.debug('Old file deleted deleted from s3');
               resolve(newUrl);
