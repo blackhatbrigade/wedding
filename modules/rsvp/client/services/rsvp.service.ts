@@ -24,7 +24,7 @@ export class RsvpService {
 	{
 		return this.http
 		.get('api/rsvps')
-		.map((r: Response) => r.json().data);
+		.map((r: Response) => r.json().rsvps);
 	}
 
 	postRsvp(formData: Rsvp) : Observable<any>

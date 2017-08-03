@@ -7,9 +7,14 @@ import { AppModule }      from '../../app/client/app.module';
 import { RsvpRoutingModule }      from './config/rsvp-routing.module';
 import { FormsModule } from '@angular/forms';
 
+/* services the module uses */
+import { RsvpService } from './services/rsvp.service';
+
+
 /* import the components this module uses */
 import { ListRsvpsComponent } from './components/list-rsvps.component';
 import { RsvpFormComponent } from './components/rsvp-form.component';
+
 
 @NgModule({
   imports:      [
@@ -23,13 +28,13 @@ import { RsvpFormComponent } from './components/rsvp-form.component';
   /*components available inside of this module */
   declarations: [
     ListRsvpsComponent,
-    RsvpFormComponent
+    RsvpFormComponent,
   ],
-  /*components available to other modules */
-  exports: [],
 
-  /* which components to load when starting this module */
-  bootstrap:    [ RsvpFormComponent]
+
+  providers: [RsvpService]
+
+  
 })
 
 export class RsvpModule {}

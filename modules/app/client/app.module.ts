@@ -28,7 +28,6 @@ import { ArticleModule }          from '../../articles/client/articles.module';
 import { AppRoutingModule }       from './app-routing.module';
 import { RoleModule }             from '../../roles/client/roles.module';
 import { RsvpModule }             from '../../rsvp/client/rsvp.module';
- 
 import {
   Http,
   XHRBackend,
@@ -37,6 +36,7 @@ import {
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
 import { GalleryModule } from '../../gallery/client/gallery.module';
+
 
 @NgModule({
   imports:      [

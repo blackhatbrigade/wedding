@@ -1,26 +1,22 @@
 /* client side class for representing an rsvp */
+
+
+
 export class Rsvp {
-  _id: string;
-  name: string;
-	attending: boolean;
-	note: string;
-  created: Date;
+  public _id: string = null;
+  public name: string = '';
+  public attending: boolean = true;
+  public partySize: number = 1;
+  public partyMembers: Array<string> = [];
+  public note: string = '';
+  public created: Date = new Date();
 
-  constructor(
-    {
-      _id='',
-      name='',
-			attending = false,
-			note= '',
-			created = new Date()
-    }: {
-      _id?: string;
-      name?: string;
-			attending?: boolean,
-			note?: string,
-			created? : Date
-    }={}
-  ) {
+  validate(): any {
+    if (this.name == '' || !this.name) {
+      return { valid: false, message: 'Please enter your name' };
+    }
 
+    return { valid: true, message: ''};
   }
+
 }

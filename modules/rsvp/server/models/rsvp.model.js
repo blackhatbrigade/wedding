@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+var ObjectId = require ('bson-objectid');
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
@@ -10,7 +11,7 @@ var mongoose = require('mongoose'),
  * Rsvp Schema
  */
 var RsvpSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+
   name: {
     type: String,
     required: true
@@ -18,6 +19,15 @@ var RsvpSchema = new Schema({
   attending: {
     type: Boolean,
     default: true
+  },
+  partyMembers: {
+    type: [String],
+    default: []
+  },
+  
+  partySize: {
+    type: Number,
+    required: true
   },
   note: {
     type: String,
