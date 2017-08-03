@@ -97,9 +97,12 @@ function userAuthController(logger, shared) {
             res.status(201).send({ user: savedUser });
           }).catch((error) => {
             logger.error('Error sending verification email', error);
+
             res.status(201).send({ user: savedUser, message: 'Verification email not sent' });
           });
       } else {
+        logger.info("Email verification not required for user: " + savedUser.username);
+
         return new Promise((resolve, reject) => {
           res.status(201).send({ user: savedUser });
         });

@@ -17,6 +17,9 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 })
 export class InformationComponent {
   user: any;
+  images: any = {
+    venue: 'https://s3-us-west-2.amazonaws.com/bennett-personal/stormmtn2.jpg'
+  };
 
   constructor (
     private authService:          AuthService,
