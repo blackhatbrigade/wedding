@@ -6,8 +6,11 @@
         <p class="home-descr text-center">The 9th of September, 2017<br />Salt Lake City</p>
       </div>
       <div class="homepage-actions">
-        <button class="btn-core white">Gallery</button>
-        <button class="btn-core white">Information</button>
+        <button class="btn-core white" routerLink="/rsvp">RSVP Now </button>
+      </div>
+      <div *ngIf="!user"class="homepage-actions">
+        <button class="btn-core white" routerLink="/signup">Create Account</button>
+        <button class="btn-core white" routerLink="/signin">Log In</button>
       </div>
     </div>
     <div class="col-md-6 full-height bg-img-home"></div>

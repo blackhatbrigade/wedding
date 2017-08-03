@@ -12,6 +12,7 @@ import {
 
 import { AppComponent }           from './components/app.component';
 import { HomeComponent }          from './components/home.component';
+import { InformationComponent }   from './components/information.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
 import { 
   SimpleNotificationsModule, 
@@ -27,7 +28,7 @@ import { UsersModule }            from '../../users/client/users.module';
 import { ArticleModule }          from '../../articles/client/articles.module';
 import { AppRoutingModule }       from './app-routing.module';
 import { RoleModule }             from '../../roles/client/roles.module';
- 
+import { RsvpModule }             from '../../rsvp/client/rsvp.module';
 import {
   Http,
   XHRBackend,
@@ -36,6 +37,7 @@ import {
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
 import { GalleryModule } from '../../gallery/client/gallery.module';
+
 
 @NgModule({
   imports:      [
@@ -51,7 +53,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
     RoleModule,
     SimpleNotificationsModule,
     PushNotificationsModule,
-    GalleryModule
+    GalleryModule,
+    RsvpModule
   ],
   providers: [
     UserService,
@@ -75,7 +78,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    InformationComponent
   ],
   bootstrap:    [ AppComponent ]
 })

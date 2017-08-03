@@ -1,9 +1,9 @@
 import { MenuItem } from './../../../core/client/config/menu-item.interface';
 
-export const GalleryMenu: Array<MenuItem> = [
+export const RsvpMenu: Array<MenuItem> = [
   {
-    "template": "Gallery",
-    "state": "/gallery",
+    "template": "RSVP",
+    "state": "/rsvp",
     "position": 1,
     "roles": ["user"],
     "subitems": [

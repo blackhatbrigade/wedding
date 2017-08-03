@@ -12,11 +12,14 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 /* Module Configuration */
 
 @Component({
-  templateUrl: './../views/home.view.html',
+  templateUrl: './../views/information.view.html',
   styleUrls: [ '../views/home.styles.css']
 })
-export class HomeComponent {
+export class InformationComponent {
   user: any;
+  images: any = {
+    venue: 'https://s3-us-west-2.amazonaws.com/bennett-personal/stormmtn2.jpg'
+  };
 
   constructor (
     private authService:          AuthService,
