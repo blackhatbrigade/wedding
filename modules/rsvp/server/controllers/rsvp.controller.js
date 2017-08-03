@@ -16,13 +16,13 @@ var Rsvp = mongoose.model('Rsvp');
 function rsvpController(logger) {
 
   /**
-   * Method for creating an rsvp
+   * Method for creating and updating a user's rsvp
    * POST: /api/rsvp
    * @param { Object } req - the HTTP request object
    * @param { Object } req.body - the RSVP object
    * @param { Object } res - the HTTP response object
    */
-  function create(req, res) {
+  function rsvp(req, res) {
     let doc = mapBodyToModel(req.body);
     doc.user = req.user._id;
 
@@ -40,8 +40,9 @@ function rsvpController(logger) {
       doc.partySize = 0;
       doc.partyMembers = [];
     }
-
-    return doc.save().then(document => {
+    doc._id = undefined;
+    return Rsvp.findOneAndUpdate({user: doc.user}, doc, {upsert: true}).exec().
+    then(document => {
       logger.info('Rsvp received', document.name);
       res.status(201).send(document);
     }).catch(error => {
@@ -158,7 +159,7 @@ function rsvpController(logger) {
 
 
   return {
-    create: create,
+    rsvp: rsvp,
     readList: readList,
     search: search,
     requestRsvp: requestRsvp

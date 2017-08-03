@@ -30,6 +30,7 @@ export class RsvpFormComponent implements OnInit{
   ngOnInit(){
     this.RsvpService.getUserRsvp().
     subscribe(rsvp => {
+      console.log(rsvp);
       this.Rsvp = rsvp;
       this.Rsvp.removeDuplicates();
     });

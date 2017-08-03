@@ -8,7 +8,7 @@ module.exports = [
   {
     route: '/rsvp',
     type: 'POST',
-    method: 'create',
+    method: 'rsvp',
     secure: true
   },
   {

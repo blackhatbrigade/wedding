@@ -48,22 +48,11 @@ export class RsvpService {
 		return this.http.get('api/rsvps/search?attending='+attending+'&name='+name+'note='+note)
 		.map((r: Response)=> r.json().rsvps)
 	}
-	private extractRsvp(json: any) : Rsvp
-	{
-		if(!json){
-				return new Rsvp();
-		}
-		return {
-			_id: json._id,
-			name: json.name,
-			attending: json.attending,
-			partySize: json.partySize,
-			partyMembers: json.partyMembers,
-			note: json.note,
-			created: new Date(json.created),
-			user: json.user
-		};
-	};
+	private extractRsvp(json: any) : Rsvp{
+		console.log(json);
+		console.log("HERE");
+		return new Rsvp(json);	
+	}
 		  _
 	private extractData(res: Response | any) {
 		let body = res.json();
