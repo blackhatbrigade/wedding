@@ -7,6 +7,20 @@ export const RsvpMenu: Array<MenuItem> = [
     "position": 1,
     "roles": ["user"],
     "subitems": [
+      {
+        template: 'RSVP',
+        state: '/rsvp',
+        roles: [
+          'user',
+        ]
+      },
+      {
+        template: 'Rsvps',
+        state: '/rsvps',
+        roles: [
+          'admin'
+        ]
+      }
     ]
   }
 ]
