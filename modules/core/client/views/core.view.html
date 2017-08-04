@@ -26,7 +26,7 @@
       </li>
       <li *ngIf="this.user" class="nav justify-content-center">
         <div ngbDropdown routerLinkActive="active">
-          <a href="#" class="nav-link" ngbDropdownToggle>
+          <a href="#" id="user-toggle" class="nav-link" ngbDropdownToggle>
           <!--TODO height/width inherit from navbar-->
           <img height="23.5px" width="23.5px" alt="profile" class="rounded-circle" [src]="user.profileImageURL">
           </a>
