@@ -4,7 +4,7 @@ export const GalleryMenu: Array<MenuItem> = [
   {
     "template": "Gallery",
     "state": "/gallery",
-    "position": 0,
+    "position": 1,
     "roles": ["user"],
     "subitems": [
     ]

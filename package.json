@@ -22,7 +22,8 @@
     "start:dev": "concurrently --kill-others --names \"webpack,node\" --prefix \"[{name}]\" --prefix-colors \"green,blue\" \"npm run build\" \"npm run server\"",
     "postinstall": "if [ ! -e ./config/private/cacert.pem ]; then npm run gen-cert; else echo \"TLS files already exist\"; fi",
     "gen-cert": "./init-ssl.sh",
-    "lint:ts": "tslint -c ./config/tslint.json ./modules/*/client/*.ts ./modules/*/client/**/*.ts"
+    "lint:ts": "tslint -c ./config/tslint.json ./modules/*/client/*.ts ./modules/*/client/**/*.ts",
+    "deploy": "`aws ecr get-login  --region us-west-2` && docker build -t wedding . && docker tag wedding:latest 627408441274.dkr.ecr.us-west-2.amazonaws.com/wedding:latest && docker push 627408441274.dkr.ecr.us-west-2.amazonaws.com/wedding:latest"
   },
   "keywords": [
     "Angular2",
