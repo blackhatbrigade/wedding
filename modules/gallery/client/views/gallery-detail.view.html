@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-10 text-center">
-    <h4>{{gallery.name}} Gallery</h4>
+    <h4>{{gallery?.name}} Gallery</h4>
   </div>
   <div class="col-sm-2">
     <button class="btn btn-secondary" [routerLink]="[ './', 'edit' ]" *ngIf="isAllowedToEdit()">Edit Gallery</button>
