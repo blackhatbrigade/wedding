@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GalleryService } from '../services/gallery.service';
 import { Gallery } from '../models/gallery.model';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { AuthService } from '../../../auth/client/services/auth.service';
 
 @Component({
@@ -18,7 +20,8 @@ export class GalleryDetailComponent {
     private galleryService: GalleryService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal
   ) {
     let galleryId = route.snapshot.params['galleryId'];
     
