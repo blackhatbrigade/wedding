@@ -4,7 +4,8 @@
       <li *ngFor="let item of menu" class="nav-item" routerLinkActive="active">
         <a *ngIf="!item.dropdown" class="nav-link" [routerLink]="item.state" [innerHTML]="item.template"></a>
         <div *ngIf="item.dropdown" ngbDropdown routerLinkActive="active">
-          <a href="#" class="nav-link" ngbDropdownToggle [innerHTML]="item.template"></a>
+        
+          <div  class="nav-link" ngbDropdownToggle [innerHTML]="item.template"></div>
           <div class="dropdown-menu">
             <span *ngFor="let subitem of item.subitems">
               <a href="#" *ngIf="!subitem.outlet" class="dropdown-item" [innerHTML]="subitem.template" [routerLink]="subitem.state"> 
