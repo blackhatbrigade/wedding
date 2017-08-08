@@ -470,7 +470,9 @@ nav.bg-primary {
         border: 0px solid @blue;
     }
 }
-
+#user-toggle::after{
+  display:none;
+}
 .navbar-collapse .dropdown-menu {
     background-color: darken(@blue, 10%);
     color: rgba(255, 255, 255, 0.75);;
@@ -707,6 +709,12 @@ img.card-img-top {
 }
 
 /******************* COLOR THEME ******************/
+div.nav-link{
+  color:@blue;
+}
+div.nav-link:hover{
+  cursor:pointer;
+}
 
 .theme-core {
   .theme-color-helper(@themeColorDefault,@themeColorAccent,@themeColorWarn,@activeLinkColor);

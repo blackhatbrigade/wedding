@@ -1,0 +1,48 @@
+<div class="container form-container">
+  <div class="homepage-title">
+    <h1 class="page-title text-center">The Wedding of <br />Camille and Jason<br />Bennett</h1>
+    <p class="home-descr text-center">The 9th of September, 2017</p>
+  </div>
+  <h1>Submit Your RSVP Here </h1>
+  <form (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+    <div class="form-group">
+      <label> Your Name </label>
+      <input [(ngModel)]="Rsvp.name" class="form-control" type="text" name="name" required placeholder="last name, first name" />
+    </div>
+    <div class="form-check">
+      <label> Will You Be Attending? </label>
+      <button type="button" class="btn " [ngClass]="{'btn-outline-success': Rsvp.attending == false, 'btn-success': Rsvp.attending == true}" (click)="setAttending(true)"> Yes </button>
+      <button type="button" class="btn " [ngClass]="{'btn-outline-danger': Rsvp.attending == true, 'btn-danger': Rsvp.attending == false}" (click)="setAttending(false)"> No </button>
+      
+    
+    </div>
+
+    <div *ngIf="Rsvp.attending" class="form-group">
+      <br>
+      <label> Names of People in Your Party</label>
+      <input class="form-control" [(ngModel)]="currentPartyMember" name="currentPartyMember" (keydown.enter)="partyMemberKeydown()"
+      placeholder="first and last names"/>
+      <button type="button" class="btn btn-outline-primary form-control" (click)="addPartyMember()"> Add Name </button>
+      <br>
+      
+      <label>Your Party</label>
+      <ul>
+        <li *ngIf="Rsvp.name != ''"> {{Rsvp.name}} <button class="btn btn-danger btn-sm" type="button" disabled > X </button></li>
+        <li *ngFor="let member of Rsvp.partyMembers"> {{member}} <button class="btn btn-danger btn-sm" type="button" (click)="removePartyMember(member)"> X </button>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <div class="form-group">
+      <br>
+      <label> Leave a Message Here (optional) </label>
+      <textarea rows="4" [(ngModel)]="Rsvp.note" class="form-control" name="note"> </textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-success btn-lg">Submit</button>
+
+  </form>
+</div>
