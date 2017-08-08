@@ -6,4 +6,4 @@ import { RsvpMenu }     from './../../../rsvp/client/config/menu';
 
 let menus: Array<any> = [];
 
-export const Menu = menus.concat(RegisteryMenu, RsvpMenu, GalleryMenu, CoreMenu, AppMenu);
+export const Menu = menus.concat(RegistryMenu, RsvpMenu, GalleryMenu, CoreMenu, AppMenu);

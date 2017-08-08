@@ -18,7 +18,7 @@ const RegistryRoutes: Routes = [
     component: RegistryFormComponent
   },
   {
-    path: 'registry/update/:id',
+    path: 'registry/edit/:id',
     component: RegistryFormComponent
   }
 ];

@@ -16,7 +16,7 @@ export const RegistryMenu: Array<MenuItem> = [
       },
       {
         template: 'List',
-        state: '/registry/list',
+        state: '/registry',
         roles: [
           'admin'
         ]

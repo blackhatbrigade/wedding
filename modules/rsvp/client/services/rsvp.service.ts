@@ -49,11 +49,9 @@ export class RsvpService {
 		.map((r: Response)=> r.json().rsvps)
 	}
 	private extractRsvp(json: any) : Rsvp{
-		console.log(json);
-		console.log("HERE");
 		return new Rsvp(json);	
 	}
-		  _
+
 	private extractData(res: Response | any) {
 		let body = res.json();
 		return body;
