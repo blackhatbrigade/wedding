@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="sm-col-6">
+      <h4>Registry List</h4>
+    </div>
+    <div class="sm-col-2" *ngIf="authService.isAdmin()">
+      <button class="btn">New</button>
+    </div>
+  </div>
+  <div class="card-columns">
+    <div class="card" *ngFor="let registery of registerList">
+      <img class="card-img-top img-fluid" src="{{registery.pic}}">
+      <div class="card-block">
+        <h4 class="card-header">{{ registery.title }}</h4>
+        <p class="card-text">{{ registery.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

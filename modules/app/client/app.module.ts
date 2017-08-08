@@ -37,6 +37,7 @@ import {
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
 import { GalleryModule } from '../../gallery/client/gallery.module';
+import { RegistryModule } from '../../registry/client/registry.module';
 
 @NgModule({
   imports:      [
@@ -52,7 +53,8 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
     RoleModule,
     SimpleNotificationsModule,
     PushNotificationsModule,
-    GalleryModule
+    GalleryModule,
+    RegistryModule
   ],
   providers: [
     UserService,

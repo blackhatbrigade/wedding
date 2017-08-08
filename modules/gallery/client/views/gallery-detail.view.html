@@ -7,8 +7,8 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="card col-sm-4" *ngFor="let picture of gallery?.pictures">
+<div class="card-columns">
+  <div class="card" *ngFor="let picture of gallery?.pictures">
     <img class="img-fluid" [src]="picture.url">
   </div>
 </div>
