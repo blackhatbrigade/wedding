@@ -12,7 +12,6 @@ export class Rsvp {
     created: Date = new Date();
     user: string = null;
 
-  constructor()
   constructor(json: any)
   {
     if(json)
