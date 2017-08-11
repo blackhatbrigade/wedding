@@ -10,7 +10,9 @@ import { AuthService } from '../../../auth/client/services/auth.service';
 
 @Component({
   templateUrl: '../views/rsvp-form.html',
-  styleUrls: ['../styles/rsvp.css']
+  styles: [
+    require('./../styles/rsvp.style.less').toString()
+  ]
 })
 export class RsvpFormComponent implements OnInit{
   Rsvp: Rsvp;
