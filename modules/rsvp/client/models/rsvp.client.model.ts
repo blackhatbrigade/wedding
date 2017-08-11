@@ -13,6 +13,7 @@ export class Rsvp {
     user: string = null;
 
   constructor(json: any)
+  constructor(json?: any)
   {
     if(json)
     {

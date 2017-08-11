@@ -872,6 +872,11 @@
       "version": "https://registry.npmjs.org/bson/-/bson-1.0.4.tgz",
       "integrity": "sha1-k8ENOeqltYQVy8QFLz5T5WKwtyw="
     },
+    "bson-objectid": {
+      "version": "1.1.5",
+      "resolved": "https://registry.npmjs.org/bson-objectid/-/bson-objectid-1.1.5.tgz",
+      "integrity": "sha1-S54hCpjBxOqp7fY6ygeEyzC3m14="
+    },
     "buffer": {
       "version": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
       "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
