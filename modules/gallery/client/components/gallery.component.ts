@@ -16,7 +16,10 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 /* Module Configuration */
 
 @Component({
-  templateUrl: './../views/gallery.view.html'
+  templateUrl: './../views/gallery.view.html',
+  styles: [
+    require('./../styles/gallery.style.less').toString()
+  ],
 })
 export class GalleryComponent {
   constructor (
