@@ -40,15 +40,20 @@ function rsvpController(logger) {
       doc.partySize = 0;
       doc.partyMembers = [];
     }
-    doc._id = undefined;
-    return Rsvp.findOneAndUpdate({user: doc.user}, doc, {upsert: true}).exec().
-    then(document => {
-      logger.info('Rsvp received', document.name);
-      res.status(201).send(document);
-    }).catch(error => {
-      logger.error('Error creating rsvp', error.errmsg);
-      res.status(500).send();
-    });
+    //remove any existing RSVPs for this user
+    return Rsvp.remove({user: doc.user}).exec()
+      .then(result => {
+        return doc.save();
+      })
+      .then(result => {
+        console.log(result);
+        res.status(200).send({result});
+      })
+      .catch(error => {
+        logger.error(error);
+        res.status(500).send();
+      });
+
 
  
     
