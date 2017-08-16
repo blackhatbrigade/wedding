@@ -5,7 +5,10 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   templateUrl: './../views/rsvp-notify.html',
-  selector: 'rsvp-notify'
+  selector: 'rsvp-notify',
+  styles: [
+    require('./../less/rsvp-notify.style.less').toString()
+  ],
 })
 export class RsvpNotifyComponent implements OnInit{
   needsRsvp: boolean = false;
