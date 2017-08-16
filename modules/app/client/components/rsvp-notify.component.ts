@@ -29,6 +29,9 @@ export class RsvpNotifyComponent implements OnInit{
       if(loggedIn){
         this.checkRsvp();
       }
+      else{
+        this.needsRsvp = false;
+      }
     });
   }
 
