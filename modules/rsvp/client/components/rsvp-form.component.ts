@@ -74,7 +74,7 @@ export class RsvpFormComponent implements OnInit{
         console.log(data);
         this.NotificationsService.success("Thank you for submitting your rsvp!");
         setTimeout(()=> {
-          this.router.navigate(['/']);
+          window.location.href="/";
         }, 3000)
       }, error => {
         this.NotificationsService.error("Something went wrong. Please reload and try again.")
