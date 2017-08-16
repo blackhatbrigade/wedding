@@ -14,6 +14,7 @@ export class Rsvp {
 
   constructor(json?:any)
   constructor(json: any)
+  constructor(json?: any)
   {
     if(json)
     {

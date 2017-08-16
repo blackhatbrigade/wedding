@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="sm-col-6">
+      <h4>Registry List</h4>
+    </div>
+    <div class="sm-col-2" *ngIf="authService.isAdmin()">
+      <button class="btn" routerLink="/registry/create">New</button>
+    </div>
+  </div>
+  <div class="card-columns">
+    <div class="card" *ngFor="let registry of registerList">
+      <img class="card-img-top img-fluid" src="{{registry.pic}}">
+      <div class="card-block">
+        <h4 class="card-header">{{ registry.title }}</h4>
+        <p class="card-text">{{ registry.description }}</p>
+        <button class="btn" routerLink="/registry/edit/{{registry._id}}" *ngIf="authService.isAdmin()">Edit</button>
+        <button class="btn" routerLink="/registry/delete/{{registry._id}}" *ngIf="authService.isAdmin()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

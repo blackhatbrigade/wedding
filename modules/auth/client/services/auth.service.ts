@@ -167,6 +167,9 @@ export class AuthService {
     });
   }
 
+  isAdmin() : boolean {
+    return JSON.parse(localStorage.getItem('user')).role === 'admin';
+  }
 
   /**
    * Attempts to pull a cached user from local storage.

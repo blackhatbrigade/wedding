@@ -1,6 +1,5 @@
 <div class="card-deck">
-  <div class="card" *ngFor="let gallery of galleries"
-        [routerLink]="[ './', gallery._id ]">
+  <div class="card" *ngFor="let gallery of galleries" [routerLink]="[ './', gallery._id ]">
     <img *ngIf="gallery.thumbnail" class="card-img-top img-thumbnail" [src]="gallery.thumbnail">
     <div class="card-block d-flex justify-content-center img-thumbnail-overlay">
       <div class="card-text align-self-center">

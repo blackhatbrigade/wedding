@@ -57,7 +57,7 @@ export class RsvpFormComponent implements OnInit{
         this.currentPartyMember = '';
       }
   }
-  removePartyMember(selectedMember){
+  removePartyMember(selectedMember: any){
     let index = this.Rsvp.partyMembers.indexOf(selectedMember)
     if(index > -1)
     {
