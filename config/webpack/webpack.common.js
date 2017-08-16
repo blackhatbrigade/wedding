@@ -32,6 +32,13 @@ module.exports = {
         path: path.resolve(rootDir, 'dist')
     },
     plugins: [
+	new webpack.ProvidePlugin({
+	    $: 'jquery',
+	    jQuery: 'jquery',
+    	    'window.jQuery': 'jquery',
+	    Popper: ['popper.js','default'],
+	    'window.Popper': ['popper.js','default']
+        }),
         new ChunkWebpack({
             filename: 'vendor.bundle.js',
             minChunks: Infinity,
