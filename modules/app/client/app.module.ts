@@ -14,6 +14,7 @@ import { AppComponent }           from './components/app.component';
 import { HomeComponent }          from './components/home.component';
 import { InformationComponent }   from './components/information.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
+import { RsvpNotifyComponent }    from './components/rsvp-notify.component';
 import { 
   SimpleNotificationsModule, 
   PushNotificationsModule, 
@@ -81,7 +82,8 @@ import { RegistryModule } from '../../registry/client/registry.module';
     AppComponent,
     PageNotFoundComponent,
     HomeComponent,
-    InformationComponent
+    InformationComponent,
+    RsvpNotifyComponent
   ],
   bootstrap:    [ AppComponent ]
 })
