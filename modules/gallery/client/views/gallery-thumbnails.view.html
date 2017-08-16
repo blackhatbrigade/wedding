@@ -1,19 +1,16 @@
 <div class="card-deck">
   <div class="card" *ngFor="let gallery of galleries" [routerLink]="[ './', gallery._id ]">
-    <img *ngIf="gallery.thumbnail" class="card-img-top img-thumbnail" [src]="gallery.thumbnail">
-    <div class="card-block d-flex justify-content-center img-thumbnail-overlay">
-      <div class="card-text align-self-center">
-        <h2>{{ gallery.name }}</h2>
-      </div>
+    <img *ngIf="gallery.thumbnail" class="card-img-top" [src]="gallery.thumbnail">
+    <div class="card-block">
+      <h2 class="card-title">{{ gallery.name }}</h2>
+      <p class="card-text">{{ gallery.name }}</p>
     </div>
   </div>
 
   <div class="card" [routerLink]="[ './', 'create' ]">
-    <div class="card-block d-flex justify-content-center">
-      <div class="card-text align-self-center">
-        <i aria-hidden="true" class="fa fa-plus" title="Add Host Group">
-        </i>
-      </div>
+    <div class="card-block">
+      <p class="card-text text-center"><i aria-hidden="true" class="fa fa-plus" title="Add Host Group"></i> 
+      <br>Add New Gallery</p>
     </div>
   </div>
 </div>

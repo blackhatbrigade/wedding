@@ -13,7 +13,7 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 
 @Component({
   templateUrl: './../views/information.view.html',
-  styleUrls: [ '../views/home.styles.css']
+  styleUrls: [ '../css/home.styles.css']
 })
 export class InformationComponent {
   user: any;
