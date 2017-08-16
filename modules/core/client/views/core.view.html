@@ -5,12 +5,12 @@
         <a *ngIf="!item.dropdown" class="nav-link" [routerLink]="item.state" [innerHTML]="item.template"></a>
         <div *ngIf="item.dropdown" class="dropdown show">
         
-          <button class="btn btn-secondary dropdown-toggle"  type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [innerHTML]="item.template"></button>
+          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [innerHTML]="item.template"></a>
           <div class="dropdown-menu">
-            <div class="dropdown-item" *ngFor="let subitem of item.subitems">
-              <a href="#" *ngIf="!subitem.outlet" [innerHTML]="subitem.template" [routerLink]="subitem.state"></a>
-              <a href="#" *ngIf="subitem.outlet" [innerHTML]="subitem.template" (click)="navByUrl(subitem.state)"></a>
-            </div>
+            <span *ngFor="let subitem of item.subitems">
+              <a class="dropdown-item" href="#" *ngIf="!subitem.outlet" [innerHTML]="subitem.template" [routerLink]="subitem.state"></a>
+              <a class="dropdown-item" href="#" *ngIf="subitem.outlet" [innerHTML]="subitem.template" (click)="navByUrl(subitem.state)"></a>
+            </span>
           </div>
         </div>
       </li>
@@ -22,7 +22,7 @@
       </li>
       <li *ngIf="this.user" class="nav justify-content-center">
         <div routerLinkActive="active" class="dropdown show">
-          <a id="user-toggle" class="btn nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a id="user-toggle" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img height="23.5px" width="23.5px" alt="profile" class="rounded-circle" [src]="user.profileImageURL">
           </a>
           <div class="dropdown-menu" aria-labelledby="user-toggle">
