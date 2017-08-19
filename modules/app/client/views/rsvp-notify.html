@@ -1,4 +1,9 @@
-<div *ngIf="needsRsvp" class="alert alert-info">
+<div *ngIf="!verified" class="alert alert-info">
+  Thanks for registering. Please <a routerLink="/verifyEmail"> verify your email </a> to 
+  continue. 
+</div>
+
+<div *ngIf="needsRsvp && verified" class="alert alert-info">
   Hello! We don't have an <a routerLink="rsvp"> RSVP </a> for you yet. 
   Would you like to <a routerLink="rsvp"> RSVP Now? </a> 
 </div>

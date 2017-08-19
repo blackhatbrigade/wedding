@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class RsvpNotifyComponent implements OnInit{
   needsRsvp: boolean = false;
-
+  verified: boolean = false;
 
   constructor(
     private AuthService :AuthService,
@@ -30,6 +30,7 @@ export class RsvpNotifyComponent implements OnInit{
     this.AuthService.authChanged$.subscribe(
     loggedIn => {
       if(loggedIn){
+        this.verified = this.AuthService.getUser().verified;
         this.checkRsvp();
       }
       else{
@@ -39,6 +40,7 @@ export class RsvpNotifyComponent implements OnInit{
   }
 
   checkRsvp(){
+    this.verified = this.AuthService.getUser().verified;
     this.RsvpService.getUserRsvp()
     .subscribe(rsvp => {
       this.needsRsvp = !rsvp.name;
