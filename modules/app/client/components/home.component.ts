@@ -13,14 +13,17 @@ import { AuthService }    from '../../../auth/client/services/auth.service';
 
 @Component({
   templateUrl: './../views/home.view.html',
-  styleUrls: [ '../views/home.styles.css']
+  styleUrls: [ './../css/home.styles.css']
 })
 export class HomeComponent {
+  user: any;
+
   constructor (
     private authService:          AuthService,
     private notificationsService: NotificationsService,
     private router:               Router
   ) {
+    this.user = authService.getUser();
   }
 
 }

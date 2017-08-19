@@ -57,6 +57,7 @@ function authenticationModule(logger, shared) {
         newUser.password = hash;
         newUser.role ='admin';
         newUser.subroles = ['user'];
+        newUser.verified = true;
         //generate profile image
         let emailHash = md5(newUser.email.toLowerCase());
         newUser.profileImageURL = 'https://gravatar.com/avatar/'+ emailHash + '?d=identicon';
@@ -203,6 +204,8 @@ function authenticationModule(logger, shared) {
         error: 'Username or Password missing!'
       });
     } else {
+      creds.username = creds.username.toLowerCase();
+
       Users.findOne({username: creds.username})
         .exec()
         .then((user) => {

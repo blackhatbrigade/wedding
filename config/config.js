@@ -27,7 +27,10 @@ module.exports = {
     force_https: process.env.TOOMEAN_APP_FORCE_HTTPS || false,
     // default is 15 minutes
     requireEmailVerification: process.env.TOOMEAN_APP_REQUIRE_EMAIL_VERIFICATION || false,
-    emailVerificationTTL: process.env.TOOMEAN_APP_EMAIL_VERIFICATION_TTL || 15 * 60 * 1000
+    emailVerificationTTL: process.env.TOOMEAN_APP_EMAIL_VERIFICATION_TTL || 15 * 60 * 1000,
+    enableRoleManager: process.env.TOOMEAN_APP_ENABLE_ROLE_MANAGER || false,
+    allowRegistration: process.env.TOOMEAN_APP_ALLOW_REGISTRATION || true,
+    defaultUserRole: process.env.TOOMEAN_APP_DEFAULT_USER_ROLE || 'user'
   },
   uploads: {
     root: 'uploads',
@@ -36,7 +39,8 @@ module.exports = {
       bucket: process.env.TOOMEAN_AWS_S3_BUCKET,
       acl: 'public-read',
       limits: {
-        fileSize: 1*1024*1024
+        // 100M
+        fileSize: 100*1024*1024
       }
     },
     profilePicture: {

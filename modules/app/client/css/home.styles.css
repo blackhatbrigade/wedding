@@ -1,5 +1,7 @@
 .homepage {
   color: #2d2d2d;
+  margin-top: -40px;
+  margin-bottom: -40px;
 }
 
 .homepage-title {
@@ -22,4 +24,8 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.info-pic {
+  max-width: 55rem;
 }

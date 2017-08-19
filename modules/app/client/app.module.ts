@@ -1,7 +1,8 @@
-import { NgModule }               from '@angular/core';
-import { BrowserModule }          from '@angular/platform-browser';
-import { HttpModule }             from '@angular/http';
-import { NgbModule }              from '@ng-bootstrap/ng-bootstrap';
+import { NgModule }                 from '@angular/core';
+import { BrowserModule }            from '@angular/platform-browser';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
+import { HttpModule }               from '@angular/http';
+import { NgbModule }                from '@ng-bootstrap/ng-bootstrap';
 
 import {
   RouterModule,
@@ -11,7 +12,9 @@ import {
 
 import { AppComponent }           from './components/app.component';
 import { HomeComponent }          from './components/home.component';
+import { InformationComponent }   from './components/information.component';
 import { PageNotFoundComponent }  from './components/not-found.component';
+import { RsvpNotifyComponent }    from './components/rsvp-notify.component';
 import { 
   SimpleNotificationsModule, 
   PushNotificationsModule, 
@@ -26,7 +29,7 @@ import { UsersModule }            from '../../users/client/users.module';
 import { ArticleModule }          from '../../articles/client/articles.module';
 import { AppRoutingModule }       from './app-routing.module';
 import { RoleModule }             from '../../roles/client/roles.module';
- 
+import { RsvpModule }             from '../../rsvp/client/rsvp.module';
 import {
   Http,
   XHRBackend,
@@ -35,10 +38,13 @@ import {
 import { AuthHttpService }        from './../../auth/client/services/auth-http.service';
 import { ActivatedRoute }         from '@angular/router';
 import { GalleryModule } from '../../gallery/client/gallery.module';
+import { RegistryModule } from '../../registry/client/registry.module';
+
 
 @NgModule({
   imports:      [
     BrowserModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
     HttpModule,
     AuthModule,
@@ -49,7 +55,9 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
     RoleModule,
     SimpleNotificationsModule,
     PushNotificationsModule,
-    GalleryModule
+    GalleryModule,
+    RegistryModule,
+    RsvpModule
   ],
   providers: [
     UserService,
@@ -73,7 +81,9 @@ import { GalleryModule } from '../../gallery/client/gallery.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    InformationComponent,
+    RsvpNotifyComponent
   ],
   bootstrap:    [ AppComponent ]
 })

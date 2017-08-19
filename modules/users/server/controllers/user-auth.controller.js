@@ -68,10 +68,12 @@ function userAuthController(logger, shared) {
     newUser.profileImageURL = generateProfileImageURL(newUser.email);
 
     // Overwrite any roles set or make sure they get set appropriately.
-    newUser.role = 'user';
+    newUser.role = config.app.defaultUserRole;
 
     return new Promise((resolve, reject) => {
-      if (!isStrongPassword(newUser.password)) {
+      if (!config.app.allowRegistration) {
+        reject(new Error('Registration disabled'));
+      } else if (!isStrongPassword(newUser.password)) {
         reject(new Error('Invalid password'));
       } else {
         resolve(authHelpers.hashPassword(newUser.password));
@@ -90,13 +92,17 @@ function userAuthController(logger, shared) {
       logger.info('User created: ' + newUser.username);
 
       if (config.app.requireEmailVerification) {
-        return sendEmailVerificationEmail(newUser).then((mailInfo) => {
-          res.status(201).send({ user: savedUser });
-        }).catch((error) => {
-          logger.error('Error sending verification email', error);
-          res.status(201).send({ user: savedUser, message: 'Verification email not sent' });
-        });
+        return sendEmailVerificationEmail(savedUser)
+          .then((mailInfo) => {
+            res.status(201).send({ user: savedUser });
+          }).catch((error) => {
+            logger.error('Error sending verification email', error);
+
+            res.status(201).send({ user: savedUser, message: 'Verification email not sent' });
+          });
       } else {
+        logger.info("Email verification not required for user: " + savedUser.username);
+
         return new Promise((resolve, reject) => {
           res.status(201).send({ user: savedUser });
         });
@@ -130,8 +136,12 @@ function userAuthController(logger, shared) {
             // message
 
             if (index === 'username_1') {
+              logger.error("Username Taken");
+
               res.status(500).send({ error: 'Username is taken' });
             } else {
+              logger.error("Unexpected Error", error);
+
               res.status(500).send();
             }
           }
@@ -442,7 +452,7 @@ function userAuthController(logger, shared) {
    * @return {Promise}
    */
   function sendEmailVerificationEmail(user) {
-    const url = 'http://' + config.app.host + ':' + config.app.port_http + '/verifyEmail;token=' + user.verification.token;
+    const url = 'http://' + config.app.host + '/verifyEmail;token=' + user.verification.token;
     const subject = 'Verification Email';
     const to = user.email;
     const from = config.email.from;

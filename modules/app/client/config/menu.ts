@@ -7,5 +7,12 @@ export const AppMenu: Array<MenuItem> = [
     position: 0,
     roles: ["user"],
     subitems: [ ]
+  },
+  {
+    template: "Information",
+    state: "/information",
+    position: 1,
+    roles: ["user"],
+    subitems: [ ]
   }
 ];

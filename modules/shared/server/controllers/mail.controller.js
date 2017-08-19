@@ -29,6 +29,8 @@ function MailController(logger) {
         if (config.email.provider === 'ses') {
           resolve(sendMailSES(email));
         } else {
+          logger.error("Unknown email provider");
+
           reject(new Error('Unknown email provider: ' + config.email.provider));
         }
       }
@@ -41,6 +43,7 @@ function MailController(logger) {
    * @returns {Promise}
    */
   function sendMailSES(email) {
+    logger.info(email);
     aws.config.update({ region: config.aws.default_region });
 
     // create a new SES transport
@@ -55,8 +58,12 @@ function MailController(logger) {
       // use SES transporter to send the message
       transporter.sendMail(email.asObject(), (err, info) => {
         if (err) {
+          logger.error("Error sending email", err);
+
           reject(err);
         } else {
+          logger.info("Email sent", info);
+
           resolve(info);
         }
       });
