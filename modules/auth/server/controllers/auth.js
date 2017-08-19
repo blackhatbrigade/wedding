@@ -204,6 +204,8 @@ function authenticationModule(logger, shared) {
         error: 'Username or Password missing!'
       });
     } else {
+      creds.username = creds.username.toLowerCase();
+
       Users.findOne({username: creds.username})
         .exec()
         .then((user) => {

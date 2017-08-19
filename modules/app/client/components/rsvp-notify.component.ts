@@ -5,11 +5,14 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   templateUrl: './../views/rsvp-notify.html',
-  selector: 'rsvp-notify'
+  selector: 'rsvp-notify',
+  styles: [
+    require('./../less/rsvp-notify.style.less').toString()
+  ],
 })
 export class RsvpNotifyComponent implements OnInit{
   needsRsvp: boolean = false;
-
+  verified: boolean = false;
 
   constructor(
     private AuthService :AuthService,
@@ -27,6 +30,7 @@ export class RsvpNotifyComponent implements OnInit{
     this.AuthService.authChanged$.subscribe(
     loggedIn => {
       if(loggedIn){
+        this.verified = this.AuthService.getUser().verified;
         this.checkRsvp();
       }
       else{
@@ -36,6 +40,7 @@ export class RsvpNotifyComponent implements OnInit{
   }
 
   checkRsvp(){
+    this.verified = this.AuthService.getUser().verified;
     this.RsvpService.getUserRsvp()
     .subscribe(rsvp => {
       this.needsRsvp = !rsvp.name;
