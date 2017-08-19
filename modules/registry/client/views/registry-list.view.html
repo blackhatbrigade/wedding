@@ -1,13 +1,13 @@
-<div class="container">
+<div>
   <div class="row">
     <div class="sm-col-6">
       <h4>Registry List</h4>
     </div>
-    <div class="sm-col-2" *ngIf="authService.isAdmin()">
+    <div class="col" *ngIf="authService.isAdmin()">
       <button class="btn" routerLink="/registry/create">New</button>
     </div>
   </div>
-  <div class="card-columns">
+  <div class="card-deck">
     <div class="card" *ngFor="let registry of registerList">
       <img class="card-img-top img-fluid" src="{{registry.pic}}">
       <div class="card-block">
