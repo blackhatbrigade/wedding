@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RsvpService } from '../services/rsvp.service';
 
 import { Rsvp } from '../models/rsvp.client.model';
+import { User } from '../../../users/client/models/user.model';
+
 import {NotificationsService} from 'angular2-notifications';
 
 import { AuthService } from '../../../auth/client/services/auth.service';
@@ -16,8 +18,10 @@ import { AuthService } from '../../../auth/client/services/auth.service';
 })
 export class RsvpFormComponent implements OnInit{
   Rsvp: Rsvp;
+
   currentPartyMember: string = null;
 
+  user: User;
 
   constructor(
     private RsvpService: RsvpService,
@@ -27,6 +31,7 @@ export class RsvpFormComponent implements OnInit{
     private route: ActivatedRoute
   ) {
     this.Rsvp = new Rsvp();
+    this.user = AuthService.getUser();
   }
 
   ngOnInit(){

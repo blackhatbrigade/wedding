@@ -1,4 +1,4 @@
-<div class="container form-container">
+<div *ngIf="user.verified" class="container form-container">
   <div class="row">
     <div class="homepage-title col-xs-12 col-md-12">
       <h1 class="page-title text-center">The Wedding of <br />Camille and Jason<br />Bennett</h1>
@@ -60,4 +60,9 @@
       </div>
     </div>
   </form>
+</div>
+<div *ngIf="!user.verified" class="container form-container">
+  <div class="alert alert-danger text-center">
+    <strong>You must verify your account before you can RSVP</strong>
+  </div>
 </div>
