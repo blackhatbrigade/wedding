@@ -14,6 +14,7 @@
 @pink: rgba(255,82,82,1);
 @orange: rgba(255,87,34,1);
 @background-midnight: #263238;
+@defaultLinkColor: #00e6ff;
 @defaultBG: #263238;
 @defaultTextColor: #fcfcfc;
 @defaultBorderColor: rgba(0,0,0,0.3);
@@ -35,6 +36,7 @@ div.alert {
     text-align: center;
 }
 
+
 a, button, .nav-link {
   &:hover {
     transition: all 0.4s ease;
@@ -42,6 +44,11 @@ a, button, .nav-link {
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
   }
+}
+
+.modal-dialog,
+.modal-content {
+  color: #2d2d2d;
 }
 
 .btn,
@@ -344,6 +351,11 @@ footer a {
 
 /**************** forms ***************************/
 
+label {
+    margin-bottom: 2px;
+}
+
+
 form h1,
 form h2 {
     border-bottom: 1px solid #ddd;
@@ -373,7 +385,7 @@ form select.input-large
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   p {
     margin-bottom: 0;
@@ -572,6 +584,13 @@ div.nav-link:hover {
 .card {
   background-color: transparent;
   border-color: rgba(255,255,255,0.3);
+}
+
+.two-columns {
+  -webkit-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 1em;
+  column-gap: 1em;
 }
 /*
 

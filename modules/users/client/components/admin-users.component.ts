@@ -23,7 +23,10 @@ import {NotificationsService} from 'angular2-notifications';
 
 
 @Component({
-  templateUrl: './../views/admin-users-view.html'
+  templateUrl: './../views/admin-users-view.html',
+  styles: [
+    require('./../less/admin-users-view.style.less').toString()
+  ]
 })
 
 export class AdminUsersComponent implements OnInit {
