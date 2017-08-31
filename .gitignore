@@ -30,3 +30,8 @@ uploads
 .vscode
 
 coverage
+
+#mac system files
+*/.DS_Store
+*.DS_Store
+**/.DS_Store

@@ -19,7 +19,7 @@
       <img class="card-img-top img-thumbnail"
            [class.gallery-thumbnail-checked]="picture.url === gallery.thumbnail"
            [src]="picture.url">
-      <div class="d-flex justify-content-center gallery-thumbnail-check"
+      <div class="card-body d-flex justify-content-center gallery-thumbnail-check"
            *ngIf="picture.url === gallery.thumbnail">
         <div class="card-text align-self-center">
           <i class="fa fa-check"></i>

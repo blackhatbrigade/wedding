@@ -1,0 +1,19 @@
+
+.user-card-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .card {
+    flex: 0 0 23%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user-card-group .card {
+    flex-basis: 48%;
+  }
+}
+
+
